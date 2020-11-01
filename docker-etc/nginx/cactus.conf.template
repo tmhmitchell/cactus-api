@@ -1,0 +1,22 @@
+upstream cactusapi {
+    server api:8000;
+}
+
+# Auto-upgrade to HTTPS
+server {
+	server_name ${NGINX_DOMAIN};
+	listen 80;
+	return 301 https://${NGINX_DOMAIN};
+}
+
+server {
+	server_name ${NGINX_DOMAIN};
+	include ${NGINX_SSL_CONF};
+
+    location / {
+        proxy_pass http://cactusapi;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }
+}
