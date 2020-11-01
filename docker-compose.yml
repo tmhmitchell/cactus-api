@@ -1,4 +1,4 @@
-version: "3.7"
+version: "2.0"
 
 services:
   api:
@@ -7,7 +7,8 @@ services:
       - CACTUS_API_TOKEN=<big-random-value>
       - CACTUS_SENTRY_DSN=<your-sentry-dsn>
       - CACTUS_ENVIRONMENT=prod
-    expose: "8000"
+    expose: 
+        - "8000"
 
   web:
     image: nginx:stable-alpine
@@ -16,4 +17,5 @@ services:
     environment:
       - NGINX_DOMAIN=<your-domain-name>
       - NGINX_SSL_CONF=<path-to-ssl-conf-snippet>
-    ports: "443:443"
+    ports: 
+        - "443:443"
