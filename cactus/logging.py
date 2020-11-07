@@ -20,7 +20,7 @@ LOGGING_CONFIG = {
         },
     },
     'loggers': {
-        'cactus.app': {
+        'cactus.core': {
             'handlers': ['default'],
             'level': 'INFO',
             'propagate': True
